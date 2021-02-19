@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Start page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style>
+            button {
+                background-color: #555555;
+                border: none;
+                color: white;
+                padding: 7px 15px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 2px 1px;
+                cursor: pointer;
+            }
+            a {
+                background-color: #555555;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            input[type=text], select {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            input[type=submit] {
+                width: 100%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+            div {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <div class="w3-container w3-cursive"><h3 >Find user by ID</h3></div>
+            <form action="#" th:action="@{/findUserById}" th:object="${users}" method="post">
+                <label for="id">Input ID</label>
+                <input id="id" name="id" type="text" th:field="*{id}"/>
+                <button name="Find" type="submit">Find</button>
+            </form>
+        </div>
+        <div>
+            <div class="w3-container w3-cursive"><h3>Find user by Name</h3></div>
+            <form action="#" th:action="@{/findUserByName}" th:object="${users}" method="post">
+                <label for="amount">Name</label>
+                <input id="name" name="firstname" type="text" th:field="*{firstname}"/>
+                <button name="Find" type="submit">Find</button>
+            </form>
+        </div>
+        <div>
+            <div class="w3-container w3-cursive"><h3>Find user by last name</h3></div>
+            <form action="#" th:action="@{/findUserByLastName}" th:object="${users}" method="post">
+                <label for="amount">Last name</label>
+                <input id="lastname" name="lastname" type="text" th:field="*{lastname}"/>
+                <button name="Find" type="submit">Find</button>
+            </form>
+        </div>
+        <a class="button" th:href="@{'/user'}">Add new user</a>
+        <a class="button" th:href="@{'/allUsers'}">View all users</a>
+        <a class="button" th:href="@{'/task'}">Add new task</a>
+        <a class="button" th:href="@{'/allTasks'}">View all tasks</a>
+    </body>
+</html>

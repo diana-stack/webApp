@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>User list</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <style>
+
+            button {
+                background-color: #555555;
+                border: none;
+                color: white;
+                padding: 7px 15px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 2px 1px;
+                cursor: pointer;
+            }
+            a {
+                background-color: #555555;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td, img {
+                padding: 6px;
+                text-align: center;
+                border-bottom: 1px solid #ddd;
+            }
+
+            tr:hover {background-color:#f5f5f5;}
+        </style>
+    </head>
+    <body>
+        <form th:action="@{/}" th:object="${users}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>User name</th>
+                        <th>User last name</th>                    
+                        <th>Age</th>
+                        <th>Delete user</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.firstname}"></td>
+                        <td th:text="${user.lastname}"></td>
+                        <td th:text="${user.age}"></td>
+                        <td><form action="#" th:action="@{'/delete/'+${user.id}}"><button type="submit">Delete</button></form></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <a class="button" th:href="@{'/allUsers'}">View all users</a>
+        <a class="button" th:href="@{'/'}">Start page</a>        
+        <a class="button" th:href="@{'/task'}">Add new task</a>
+        <a class="button" th:href="@{'/allTasks'}">View all tasks</a>
+    </body>
+</html>
