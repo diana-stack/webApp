@@ -53,6 +53,7 @@
                         <th>User last name</th>                    
                         <th>Age</th>
                         <th>Delete user</th>
+                        <th>Open user</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +63,7 @@
                         <td th:text="${user.lastname}"></td>
                         <td th:text="${user.age}"></td>
                         <td><form action="#" th:action="@{'/delete/'+${user.id}}"><button type="submit">Delete</button></form></td>
+                        <td><form action="#" th:action="@{'/viewUser/'+${user.id}}"><button type="submit">Open user profile</button></form></td>
                     </tr>
                 </tbody>
             </table>

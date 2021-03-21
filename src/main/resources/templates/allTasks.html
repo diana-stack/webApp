@@ -54,6 +54,7 @@
                         <th>End Date</th>
                         <th>User</th>
                         <th>Delete task</th>
+                        <th>Open task</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,6 +65,7 @@
                         <td th:text="${task.endDate}"></td>
                         <td th:text="${task.getUser().getFirstname()} + ' ' + ${task.getUser().getLastname()}"></td>
                         <td><form action="#" th:action="@{'/deleteTask/'+${task.id}}"><button type="submit">Delete</button></form></td>
+                        <td><form action="#" th:action="@{'/viewTask/'+${task.id}}"><button type="submit">Open task</button></form></td>
                     </tr>
                 </tbody>
             </table>

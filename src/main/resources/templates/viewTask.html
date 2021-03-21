@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create user</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <style>
+            button {
+                background-color: #555555;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            a {
+                background-color: #555555;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            input[type=text], select {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            input[type=submit] {
+                width: 100%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+            div {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <form action="#" th:object="${task}">
+                <label for="amount">Title</label>
+                <input id="title" name="title" type="text" th:field="*{title}"/>              
+                <label for="amount">Start date</label>
+                <input id="startDate" name="startDate" type="text" th:field="*{startDate}"/>       
+                <label for="amount">End date</label>
+                <input id="endDate" name="endDate" type="text" th:field="*{endDate}"/>
+                <label for="amount">User</label>
+                <input id="user" name="user" type="text" th:field="*{user}"/>        
+                <a class="button" th:href="@{'/'}">Back to start page</a>
+                <a class="button" th:href="@{'/allUsers'}">View all users</a>
+                <a class="button" th:href="@{'/allTasks'}">View all tasks</a>
+            </form>
+        </div>
+    </body>
+</html>

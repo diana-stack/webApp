@@ -132,5 +132,17 @@ public class MainController {
                 }).orElseThrow(() -> new NotFoundException("Task not found with id " + taskId));
         return "redirect:/allTasks";
     }
+    
+    @RequestMapping(value = "/viewUser/{userId}", method = RequestMethod.GET)
+    public String viewUserById(Model model, @PathVariable Long userId) {
+        model.addAttribute("user", repository.findById(userId));
+        return "/viewUser";
+    }    
+    
+    @RequestMapping(value = "/viewTask/{taskId}", method = RequestMethod.GET)
+    public String viewTaskById(Model model, @PathVariable Long taskId) {
+        model.addAttribute("task", taskRepository.findById(taskId));
+        return "/viewTask";
+    }  
 }
 
