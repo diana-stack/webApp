@@ -1,12 +1,12 @@
 package computerplus.com.pl.controller;
 
+import computerplus.com.pl.exceptions.NotFoundException;
 import computerplus.com.pl.models.Task;
 import computerplus.com.pl.models.User;
 import computerplus.com.pl.repositiries.TaskRepository;
 import computerplus.com.pl.repositiries.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,14 +32,14 @@ public class MainController {
     }
 
     @RequestMapping("/findUserById")
-    public String startFindById(Model model, User user) {
+    public String startFindById(Model model, User user) throws NotFoundException {
         Long userId = user.getId();
         repository.findById(userId)
                 .map(findUser -> {
                     ResponseEntity.ok(findUser);
                     model.addAttribute("users", findUser);
                     return "index";
-                }).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + userId));
+                }).orElseThrow(() -> new NotFoundException("User not found with id " + userId));
         return "index";
     }
 
@@ -54,7 +54,7 @@ public class MainController {
                     resultUsers.add(resultUser);
                     model.addAttribute("users", resultUsers);
                     return "index";
-                }).orElseThrow(() -> new ResourceNotFoundException("User not found with userFisrtName " + userFisrtName));
+                });
             }
         });
         return "index";
@@ -71,7 +71,7 @@ public class MainController {
                     resultUsers.add(resultUser);
                     model.addAttribute("users", resultUsers);
                     return "index";
-                }).orElseThrow(() -> new ResourceNotFoundException("User not found with userLastName " + userLastName));
+                });
             }
         });
         return "index";
@@ -96,12 +96,12 @@ public class MainController {
     }
 
     @RequestMapping(value = "/delete/{userId}", method = RequestMethod.GET)
-    public String deleteUser(@PathVariable Long userId) {
+    public String deleteUser(@PathVariable Long userId) throws NotFoundException {
         repository.findById(userId)
                 .map(user -> {
                     repository.delete(user);
                     return ResponseEntity.ok().build();
-                }).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + userId));
+                }).orElseThrow(() -> new NotFoundException("User not found with id " + userId));
         return "redirect:/allUsers";
     }
     
@@ -124,12 +124,13 @@ public class MainController {
     }
     
     @RequestMapping(value = "/deleteTask/{taskId}", method = RequestMethod.GET)
-    public String deleteTask(@PathVariable Long taskId) {
+    public String deleteTask(@PathVariable Long taskId) throws NotFoundException {
         taskRepository.findById(taskId)
                 .map(task -> {
                     taskRepository.delete(task);
                     return ResponseEntity.ok().build();
-                }).orElseThrow(() -> new ResourceNotFoundException("Task not found with id " + taskId));
+                }).orElseThrow(() -> new NotFoundException("Task not found with id " + taskId));
         return "redirect:/allTasks";
     }
 }
+

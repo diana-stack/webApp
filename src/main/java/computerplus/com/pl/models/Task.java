@@ -22,7 +22,7 @@ public class Task {
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private User user;
 
-    public User getUser() {
+    public User getUser() {      
         return user;
     }
 
