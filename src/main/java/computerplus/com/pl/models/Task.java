@@ -1,6 +1,8 @@
 package computerplus.com.pl.models;
 
 import java.util.Date;
+import java.util.Objects;
+import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,11 +13,11 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "tasks", schema = "test_sh")
 public class Task {
     @Id
     @GeneratedValue
-    private long id;
+    private UUID id;
     
     private String title;
     
@@ -36,11 +38,11 @@ public class Task {
     @Column(name = "enddate")
     private Date endDate;
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -66,5 +68,22 @@ public class Task {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id &&
+                title.equals(task.title) &&
+                user.equals(task.user) &&
+                startDate.equals(task.startDate) &&
+                endDate.equals(task.endDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, user, startDate, endDate);
     }
 }

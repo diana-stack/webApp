@@ -1,7 +1,5 @@
-CREATE TABLE user_task(
-    id integer,
-    task_id integer,
-    primary key(id, task_id),
-    foreign key(id) references users(id),
-    foreign key(task_id) references tasks(task_id) 
+CREATE TABLE test_sh.user_task(
+    id UUID references test_sh.users(id),
+    task_id UUID references test_sh.tasks(task_id),
+    primary key(id, task_id)
 );

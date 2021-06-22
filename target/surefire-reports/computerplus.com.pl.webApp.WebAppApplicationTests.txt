@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: computerplus.com.pl.webApp.WebAppApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.025 s <<< FAILURE! - in computerplus.com.pl.webApp.WebAppApplicationTests
-contextLoads  Time elapsed: 0.024 s  <<< ERROR!
-org.junit.platform.commons.PreconditionViolationException: executables array must not be null or empty
-	at computerplus.com.pl.webApp.WebAppApplicationTests.contextLoads(WebAppApplicationTests.java:17)
-

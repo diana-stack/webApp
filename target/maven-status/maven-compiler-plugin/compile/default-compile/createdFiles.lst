@@ -1,0 +1,9 @@
+computerplus\com\pl\models\User.class
+computerplus\com\pl\repositiries\UserRepository.class
+computerplus\com\pl\repositiries\TaskRepository.class
+computerplus\com\pl\services\TaskService.class
+computerplus\com\pl\WebAppApplication.class
+computerplus\com\pl\controller\MainController.class
+computerplus\com\pl\exceptions\NotFoundException.class
+computerplus\com\pl\models\Task.class
+computerplus\com\pl\services\UserService.class
